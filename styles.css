@@ -88,6 +88,7 @@ button {
 .tracker {
   flex: 1;
   margin: auto;
+  max-width: max-content;
 }
 
 .tracker-container > div {
@@ -98,8 +99,21 @@ button {
 }
 
 .tracker-container {
+  margin: auto;
   display: grid;
   gap: 5px;
-  grid-template-columns: 200px 200px 200px 200px 200px ;
+  grid-template-columns: 200px 200px 200px 200px 200px;
   grid-template-rows: 200px 200px 200px;
+}
+
+.income {
+  grid-row: 1 / 4;
+  grid-column: 1 / 3;
+}
+
+.expense,
+.budget,
+.savings {
+  grid-column-start: 3;
+  grid-column-end: 6;
 }
