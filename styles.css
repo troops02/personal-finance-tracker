@@ -6,7 +6,9 @@
 
 /* ---------------element style------------ */
 
-button {
+button,
+input,
+select {
   border: initial;
   color: inherit;
   background-color: initial;
@@ -17,7 +19,7 @@ button {
   width: 100vw;
   background-color: #1a1f25;
   font-family: 'Poppins', sans-serif;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .pft-container {
@@ -92,8 +94,6 @@ button {
 }
 
 .tracker-container > div {
-  background-color: rgba(41, 47, 54, 0.8);
-  border: 1px solid rgba(54, 54, 54, 0.8);
   border-radius: 10px;
   padding: 10px;
 }
@@ -104,6 +104,23 @@ button {
   gap: 5px;
   grid-template-columns: 200px 200px 200px 200px 200px;
   grid-template-rows: 200px 200px 200px;
+}
+
+.tracker-container > div:nth-child(1) {
+  background-color: rgba(15, 107, 29, 0.2);
+  /* border: 1px solid #0f6b1d; */
+}
+.tracker-container div:nth-child(2) {
+  background-color: rgba(101, 21, 110, 0.2);
+  /* border: 1px solid #65156e; */
+}
+.tracker-container div:nth-child(3) {
+  background-color: rgba(163, 41, 33, 0.2);
+  /* border: 1px solid #a32921; */
+}
+.tracker-container div:nth-child(4) {
+  background-color: rgba(107, 60, 15, 0.2);
+  /* border: 1px solid #6b3c0f; */
 }
 
 .income {
