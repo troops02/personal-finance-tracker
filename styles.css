@@ -98,6 +98,10 @@ select {
   padding: 10px;
 }
 
+.tracker-container p {
+  color: #eae3e3;
+}
+
 .tracker-container {
   margin: auto;
   display: grid;
@@ -106,19 +110,20 @@ select {
   grid-template-rows: 200px 200px 200px;
 }
 
-.tracker-container > div:nth-child(1) {
+.tracker__income {
   background-color: rgba(15, 107, 29, 0.2);
   /* border: 1px solid #0f6b1d; */
 }
-.tracker-container div:nth-child(2) {
+
+.tracker__expense {
   background-color: rgba(101, 21, 110, 0.2);
   /* border: 1px solid #65156e; */
 }
-.tracker-container div:nth-child(3) {
+.tracker__budget {
   background-color: rgba(163, 41, 33, 0.2);
   /* border: 1px solid #a32921; */
 }
-.tracker-container div:nth-child(4) {
+.tracker__savings {
   background-color: rgba(107, 60, 15, 0.2);
   /* border: 1px solid #6b3c0f; */
 }
@@ -133,4 +138,27 @@ select {
 .savings {
   grid-column-start: 3;
   grid-column-end: 6;
+}
+
+.tracker__income-input {
+  padding: 5px;
+  max-width: 600px;
+  height: 350px;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+.tracker__icome-input-log-entry {
+  max-width: 400px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: rgba(15, 107, 29, 0.5);
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.expense__off {
+  max-width: 600px;
+  height: 150px;
+  background-color: #fff;
 }
