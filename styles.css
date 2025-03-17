@@ -162,6 +162,13 @@ select {
   padding: 5px;
 }
 
+.income-salary {
+  padding: 2px 20px;
+  background-color: rgba(15, 107, 29, 0.1);
+  border: 1px solid rgba(15, 107, 29);
+  border-radius: 1000px;
+}
+
 .entry {
   display: flex;
   align-items: center;
@@ -215,4 +222,77 @@ select {
 .savings {
   grid-column-start: 3;
   grid-column-end: 6;
+}
+
+/* -----------------tracker__expense--------------------- */
+.tracker__expense {
+  display: flex;
+}
+
+.tracker__expense-details {
+  padding: 0 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 33%;
+  margin-right: 3px;
+}
+
+.tracker__expense-value,
+.tracker__expense-source {
+  background-color: #1d1f21;
+  border: 1px solid rgba(101, 21, 110, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.5s;
+}
+
+.tracker__expense-value:hover,
+.tracker__expense-source:hover {
+  background-color: #1a1f25;
+  border-color: rgba(101, 21, 110);
+}
+
+.log-expense {
+  font-size: smaller;
+}
+
+.tracker__expense-log {
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+.expense-log__salary {
+  padding: 2px 20px;
+  background-color: rgba(101, 21, 110, 0.1);
+  border: 1px solid rgba(101, 21, 110);
+  border-radius: 1000px;
+}
+
+.tracker__expense-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: rgba(101, 21, 110, 0.5);
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.expense__entery-btn {
+  cursor: pointer;
+  padding: 5px 5px;
+  background-color: rgba(101, 21, 110, 0.5);
+  border: 1px solid rgba(101, 21, 110);
+  border-radius: 1000px;
+  transition: all 0.5s;
+}
+
+.expense__entery-btn:active {
+  transform: translateY(4px);
 }
