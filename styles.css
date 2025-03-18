@@ -326,6 +326,18 @@ select {
   background-color: #1a1f25;
   border-color: rgba(163, 41, 33);
 }
+.tracker__budget-btn {
+  cursor: pointer;
+  padding: 5px 5px;
+  background-color: rgba(163, 41, 33, 0.5);
+  border: 1px solid rgba(163, 41, 33);
+  border-radius: 1000px;
+  transition: all 0.5s;
+}
+
+.tracker__budget-btn:active {
+  transform: translateY(4px);
+}
 
 .tracker__budget-log {
   padding: 5px;
@@ -345,4 +357,11 @@ select {
   background-color: rgba(163, 41, 33, 0.5);
   margin-bottom: 5px;
   padding: 5px;
+}
+
+.budget-log__salary {
+  padding: 2px 20px;
+  background-color: rgba(163, 41, 33, 0.1);
+  border: 1px solid rgba(163, 41, 33);
+  border-radius: 1000px;
 }
