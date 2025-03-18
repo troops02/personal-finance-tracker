@@ -4,6 +4,7 @@ const incomeSource = document.querySelector('.tracker__income-source');
 const incomeAmount = document.querySelector('.tracker__income-amount');
 const incomeInput = document.querySelector('.tracker__income-input');
 const entryBtn = document.querySelector('.entry-btn');
+const calcTotalAmount = document.querySelector('.total');
 
 let total = 0;
 const totalAmount = [];
@@ -20,8 +21,13 @@ const createIncomeEl = function (income, amount) {
 
 entryBtn.addEventListener('click', function (e) {
   e.preventDefault();
+
   const income = incomeSource.value.trim();
   const amount = +incomeAmount.value.trim();
+
+  totalAmount.push(amount);
+  total += amount;
+
   if (!income & !amount) {
     alert('Enter a valid income source and amount');
     return;
@@ -29,8 +35,5 @@ entryBtn.addEventListener('click', function (e) {
   createIncomeEl(income, amount);
   incomeSource.value = '';
   incomeAmount.value = '';
-  totalAmount.push(amount);
-  total += amount;
-  console.log(totalAmount);
-  console.log(total);
+  calcTotalAmount.textContent = `${total}`;
 });
