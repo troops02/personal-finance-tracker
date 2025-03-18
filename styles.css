@@ -15,6 +15,10 @@ select {
   background-color: initial;
 }
 
+button:active {
+  transform: translateY(4px);
+}
+
 .pft {
   color: #eae3e3;
   height: 100vh;
@@ -186,10 +190,6 @@ select {
   transition: all 0.5s;
 }
 
-.entry-btn:active {
-  transform: translateY(4px);
-}
-
 .entry__icon {
   font-size: 1em;
   font-weight: lighter;
@@ -293,10 +293,6 @@ select {
   transition: all 0.5s;
 }
 
-.expense__entery-btn:active {
-  transform: translateY(4px);
-}
-
 /* -----------------------tracker__budget--------------------- */
 .tracker__budget {
   display: flex;
@@ -333,10 +329,6 @@ select {
   border: 1px solid rgba(163, 41, 33);
   border-radius: 1000px;
   transition: all 0.5s;
-}
-
-.tracker__budget-btn:active {
-  transform: translateY(4px);
 }
 
 .tracker__budget-log {
