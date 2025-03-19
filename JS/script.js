@@ -13,7 +13,7 @@ const expenseLog = document.querySelector('.tracker__expense-log');
 
 let total = 0;
 const totalAmount = [];
-const expensseAmount = [];
+const tolExpenseAmount = [];
 
 const createIncomeEl = function (income, amount) {
   const cap = income.replace(income[0], income[0].toUpperCase());
@@ -62,9 +62,9 @@ expenseEntryBtn.addEventListener('click', function (e) {
   const expense = expenseSource.value;
   const amount = +expenseAmount.value.trim();
 
-  expensseAmount.push(amount);
+  tolExpenseAmount.push(amount);
   total -= amount;
-  console.log(expenseAmount,total);
+  console.log(tolExpenseAmount, total);
 
   if (!expense || !amount) {
     alert('Enter a valid expense');
