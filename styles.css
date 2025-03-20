@@ -3,6 +3,16 @@
   margin: 0;
   box-sizing: border-box;
 }
+/* ---------------KeyFrame------------ */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
 
 /* ---------------element style------------ */
 
@@ -43,6 +53,7 @@ button:active {
   flex-direction: column;
   width: 68px;
   position: relative;
+  animation: slideLeft 1s;
 }
 
 .footer::before {
