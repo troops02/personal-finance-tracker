@@ -7,10 +7,12 @@
 @keyframes slideLeft {
   0% {
     transform: translateX(-100%);
+    opacity: 0;
   }
 
   100% {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -295,7 +297,7 @@ button:active {
   padding: 5px;
 }
 
-.expense__entery-btn {
+.expense__entry-btn {
   cursor: pointer;
   padding: 5px 5px;
   background-color: rgba(101, 21, 110, 0.5);
