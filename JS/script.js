@@ -47,6 +47,7 @@ const createBudgetEl = function (budget, category) {
                 <p>${budget}</p>
                 <p class="budget-log__salary">${category}</p>
               </div>`;
+
   budgetLog.insertAdjacentHTML('beforeend', html);
 };
 
