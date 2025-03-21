@@ -16,6 +16,13 @@ const expenseArr = [];
 const clearInputs = (...inputs) =>
   inputs.forEach((input) => (input.value = ''));
 
+const checkValidInputs = function (str, num) {
+  if (!str || isNaN(num) || num <= 0) {
+    alert('Enter a valid positive number for income');
+    return;
+  }
+};
+
 const createIncomeEl = function (income, amount) {
   const cap = income.replace(income[0], income[0].toUpperCase());
   const html = `
@@ -34,7 +41,6 @@ const createExpenseEl = function (expense, amount) {
     <p>${cap}</p>
     <p class="expense-log__salary">${amount}</p>
   </div>`;
-  
   expenseLog.insertAdjacentHTML('beforeend', html);
 };
 
@@ -44,15 +50,11 @@ incomeEntryBtn.addEventListener('click', function (e) {
   const income = incomeSource.value;
   const amount = +incomeAmount.value.trim();
 
-  if (!income || isNaN(amount) || amount <= 0) {
-    alert('Enter a valid positive number for income');
-    return;
-  }
-
+  checkValidInputs(income, amount);
   amountArr.push(amount);
   const totalBalance = amountArr.reduce((acc, cur) => acc + cur, 0);
-  
-  console.log(`amountArr: ${amountArr}`, `balance: ${balance}`);
+
+  console.log(`amountArr: ${amountArr}`, `balance: ${totalBalance}`);
 
   createIncomeEl(income, amount);
 
@@ -66,10 +68,7 @@ expenseEntryBtn.addEventListener('click', function (e) {
   const expense = expenseSource.value;
   const amount = +expenseAmount.value.trim();
 
-  if (!expense || isNaN(amount) || amount <= 0) {
-    alert('Enter a valid expense');
-    return;
-  }
+  checkValidInputs(expense, amount);
   expenseArr.push(amount);
   console.log(expenseArr);
 
