@@ -64,7 +64,6 @@ incomeEntryBtn.addEventListener('click', function (e) {
 
   amountArr.push(amount);
   const totalBalance = amountArr.reduce((acc, cur) => acc + cur, 0);
-
   createIncomeEl(income, amount);
   clearInputs(incomeSource, incomeAmount);
 
