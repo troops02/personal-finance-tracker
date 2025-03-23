@@ -406,7 +406,7 @@ button:active {
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 2;
+  z-index: 100;
   background-color: #d46326;
   height: 100%;
   width: 35%;
