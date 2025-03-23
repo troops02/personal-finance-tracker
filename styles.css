@@ -402,7 +402,7 @@ button:active {
 
 /*----------------------transaction--------------------- */
 
-/* .transaction {
+.transaction {
   position: absolute;
   top: 0;
   right: 0;
@@ -410,6 +410,7 @@ button:active {
   background-color: #d46326;
   height: 100%;
   width: 35%;
+  overflow-y: auto;
 }
 
 .shadow {
@@ -419,4 +420,4 @@ button:active {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
-} */
+}
