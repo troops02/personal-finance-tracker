@@ -1,4 +1,6 @@
 'use strict';
+import { txnAnimation, txnTiming } from './animate.js';
+
 const incomeSource = document.querySelector('.tracker__income-source');
 const incomeAmount = document.querySelector('.tracker__income-amount');
 const incomeInput = document.querySelector('.tracker__income-input');
@@ -14,6 +16,8 @@ const budgetSource = document.querySelector('.tracker__budget-input');
 const budgetCategory = document.querySelector('.tracker__budget-category');
 const budgetLog = document.querySelector('.tracker__budget-log');
 const budgetEntryBtn = document.querySelector('.tracker__budget-btn');
+
+const transactionBtn = document.querySelector('.transaction-btn');
 
 const amountArr = [];
 const expenseArr = [];
@@ -89,14 +93,28 @@ expenseEntryBtn.addEventListener('click', function (e) {
 budgetEntryBtn.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = +budgetSource.value.trim();
+  const amount = +budgetSource.value;
   const budget = budgetCategory.value;
-  budgetArr.push({ budget, amount });
 
   if (!budget || isNaN(amount) || amount <= 0) {
     alert('Enter a valid positive number for income');
     return;
   }
+
+  budgetArr.push({ budget, amount });
   createBudgetEl(budget, amount);
   clearInputs(budgetSource, budgetCategory);
 });
+
+const body = document.querySelector('body');
+const transactionEl = function () {
+  const html = `
+  <div class="transaction"></div>
+`;
+  body.insertAdjacentHTML('beforeend', html);
+
+  const newTransaction = document.querySelector('.transaction:last-of-type');
+  newTransaction.animate(txnAnimation, txnTiming);
+};
+
+transactionBtn.addEventListener('click', transactionEl);
