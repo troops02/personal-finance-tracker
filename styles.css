@@ -421,8 +421,8 @@ button:active {
   right: 0;
   z-index: 100;
   background-color: #d46326;
-  height: 90%;
-  width: 20%;
+  height: 100%;
+  width: 35%;
   overflow-y: auto;
 }
 

@@ -18,6 +18,7 @@ const budgetLog = document.querySelector('.tracker__budget-log');
 const budgetEntryBtn = document.querySelector('.tracker__budget-btn');
 
 const transactionBtn = document.querySelector('.transaction-btn');
+const shadow = document.querySelector('.shadow');
 
 const amountArr = [];
 const expenseArr = [];
@@ -115,6 +116,13 @@ const transactionEl = function () {
 
   const newTransaction = document.querySelector('.transaction:last-of-type');
   newTransaction.animate(txnAnimation, txnTiming);
+  body.style.overflow = 'hidden';
+  shadowEl();
 };
 
+const shadowEl = function () {
+  const html = `<div class="shadow"></div>
+`;
+  body.insertAdjacentHTML('beforeend', html);
+};
 transactionBtn.addEventListener('click', transactionEl);
