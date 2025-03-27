@@ -109,15 +109,17 @@ budgetEntryBtn.addEventListener('click', function (e) {
 
 const body = document.querySelector('body');
 const transactionEl = function () {
-  const html = `
-  <div class="transaction"></div>
-`;
-  body.insertAdjacentHTML('beforeend', html);
-
-  const newTransaction = document.querySelector('.transaction:last-of-type');
-  newTransaction.animate(txnAnimation, txnTiming);
-  body.style.overflow = 'hidden';
-  shadowEl();
+  if (!document.querySelector('.transaction')) {
+    const html = `
+    <div class="transaction"></div>
+  `;
+    body.insertAdjacentHTML('beforeend', html);
+    
+    const newTransaction = document.querySelector('.transaction:last-of-type');
+    newTransaction.animate(txnAnimation, txnTiming);
+    body.style.overflow = 'hidden';
+    shadowEl();
+  } else console.error('Transaction already exists');
 };
 
 const shadowEl = function () {
