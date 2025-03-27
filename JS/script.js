@@ -18,11 +18,11 @@ const budgetLog = document.querySelector('.tracker__budget-log');
 const budgetEntryBtn = document.querySelector('.tracker__budget-btn');
 
 const transactionBtn = document.querySelector('.transaction-btn');
-const shadow = document.querySelector('.shadow');
 
 const amountArr = [];
 const expenseArr = [];
 const budgetArr = [];
+let totalBalance;
 
 const clearInputs = (...inputs) =>
   inputs.forEach((input) => (input.value = ''));
@@ -68,7 +68,7 @@ incomeEntryBtn.addEventListener('click', function (e) {
   }
 
   amountArr.push(amount);
-  const totalBalance = amountArr.reduce((acc, cur) => acc + cur, 0);
+  totalBalance = amountArr.reduce((acc, cur) => acc + cur, 0);
   createIncomeEl(income, amount);
   clearInputs(incomeSource, incomeAmount);
 
