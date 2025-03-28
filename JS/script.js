@@ -1,5 +1,4 @@
 'use strict';
-import { txnAnimation, txnTiming } from './animate.js';
 
 const incomeSource = document.querySelector('.tracker__income-source');
 const incomeAmount = document.querySelector('.tracker__income-amount');
@@ -107,24 +106,3 @@ budgetEntryBtn.addEventListener('click', function (e) {
   clearInputs(budgetSource, budgetCategory);
 });
 
-const body = document.querySelector('body');
-const transactionEl = function () {
-  if (!document.querySelector('.transaction')) {
-    const html = `
-    <div class="transaction"></div>
-  `;
-    body.insertAdjacentHTML('beforeend', html);
-    
-    const newTransaction = document.querySelector('.transaction:last-of-type');
-    newTransaction.animate(txnAnimation, txnTiming);
-    body.style.overflow = 'hidden';
-    shadowEl();
-  } else console.error('Transaction already exists');
-};
-
-const shadowEl = function () {
-  const html = `<div class="shadow"></div>
-`;
-  body.insertAdjacentHTML('beforeend', html);
-};
-transactionBtn.addEventListener('click', transactionEl);
