@@ -21,10 +21,17 @@ const transactionBtn = document.querySelector('.transaction-btn');
 const amountArr = [];
 const expenseArr = [];
 const budgetArr = [];
-let totalBalance;
 
 const clearInputs = (...inputs) =>
   inputs.forEach((input) => (input.value = ''));
+
+const updateTotalBalance = function () {
+  const totalIncome = amountArr.reduce((acc, cur) => acc + cur, 0);
+  const totalExpense = expenseArr.reduce((acc, cur) => acc + cur, 0);
+  const totalBalance = totalIncome - totalExpense;
+
+  calcTotalAmount.textContent = `£${totalBalance}`;
+};
 
 const createIncomeEl = function (income, amount) {
   const html = `
@@ -67,11 +74,9 @@ incomeEntryBtn.addEventListener('click', function (e) {
   }
 
   amountArr.push(amount);
-  totalBalance = amountArr.reduce((acc, cur) => acc + cur, 0);
   createIncomeEl(income, amount);
   clearInputs(incomeSource, incomeAmount);
-
-  calcTotalAmount.textContent = totalBalance;
+  updateTotalBalance();
 });
 
 expenseEntryBtn.addEventListener('click', function (e) {
@@ -84,10 +89,11 @@ expenseEntryBtn.addEventListener('click', function (e) {
     alert('Enter a valid positive number for income');
     return;
   }
+  
   expenseArr.push(amount);
-
   createExpenseEl(expense, amount);
   clearInputs(expenseSource, expenseAmount);
+  updateTotalBalance();
 });
 
 budgetEntryBtn.addEventListener('click', function (e) {
@@ -105,4 +111,3 @@ budgetEntryBtn.addEventListener('click', function (e) {
   createBudgetEl(budget, amount);
   clearInputs(budgetSource, budgetCategory);
 });
-
