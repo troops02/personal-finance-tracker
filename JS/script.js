@@ -27,7 +27,7 @@ const clearInputs = (...inputs) =>
 
 const updateTotalBalance = function () {
   const totalIncome = amountArr.reduce((acc, cur) => acc + cur, 0);
-  const totalExpense = expenseArr.reduce((acc, cur) => acc + cur, 0);
+  const totalExpense = expenseArr.reduce((acc, cur) => acc + cur.amount, 0);
   const totalBalance = totalIncome - totalExpense;
 
   calcTotalAmount.textContent = `£${totalBalance}`;
@@ -89,8 +89,9 @@ expenseEntryBtn.addEventListener('click', function (e) {
     alert('Enter a valid positive number for income');
     return;
   }
-  
-  expenseArr.push(amount);
+
+  expenseArr.push({ expense, amount });
+  console.log(expenseArr);
   createExpenseEl(expense, amount);
   clearInputs(expenseSource, expenseAmount);
   updateTotalBalance();
