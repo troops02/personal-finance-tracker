@@ -30,14 +30,16 @@ const updateTotalBalance = function () {
   const totalExpense = expenseArr.reduce((acc, cur) => acc + cur.amount, 0);
   const totalBalance = totalIncome - totalExpense;
 
-  calcTotalAmount.textContent = `£${totalBalance}`;
+  calcTotalAmount.textContent = totalBalance;
 };
+
+const setBudget = function () {};
 
 const createIncomeEl = function (income, amount) {
   const html = `
     <div class="tracker__icome-input-log-entry">
         <p class="income-text">${income}</p>
-        <p class="income-salary">${amount}</p>
+        <p class="income-salary">+${amount}</p>
     </div>`;
 
   incomeInput.insertAdjacentHTML('beforeend', html);
@@ -47,7 +49,7 @@ const createExpenseEl = function (expense, amount) {
   const html = `
   <div class="tracker__expense-entry">
     <p>${expense}</p>
-    <p class="expense-log__salary">${amount}</p>
+    <p class="expense-log__salary">-${amount}</p>
   </div>`;
 
   expenseLog.insertAdjacentHTML('beforeend', html);
@@ -109,6 +111,7 @@ budgetEntryBtn.addEventListener('click', function (e) {
   }
 
   budgetArr.push({ budget, amount });
+  console.log(budgetArr);
   createBudgetEl(budget, amount);
   clearInputs(budgetSource, budgetCategory);
 });
