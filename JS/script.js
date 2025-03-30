@@ -1,5 +1,4 @@
 'use strict';
-
 const incomeSource = document.querySelector('.tracker__income-source');
 const incomeAmount = document.querySelector('.tracker__income-amount');
 const incomeInput = document.querySelector('.tracker__income-input');
