@@ -32,13 +32,29 @@ const updateTotalBalance = function () {
   calcTotalAmount.textContent = totalBalance;
 };
 
+const setBudget = (category, expAmount) => {
+  const budget = budgetArr.find((b) => b.budget === category);
+
+  if (!budget) {
+    alert(`No budgets set for ${category}. Please set a budget first!`);
+    return false;
+  }
+
+  if (expAmount > budget.amount) {
+    alert(`⚠️ You are exceeding your budget for ${category}!`);
+    clearInputs(budgetSource, budgetCategory);
+    return false;
+  }
+
+  return true;
+};
+
 const createIncomeEl = function (income, amount) {
   const html = `
     <div class="tracker__icome-input-log-entry">
         <p class="income-text">${income}</p>
         <p class="income-salary">+${amount}</p>
     </div>`;
-
   incomeInput.insertAdjacentHTML('beforeend', html);
 };
 
@@ -48,7 +64,6 @@ const createExpenseEl = function (expense, amount) {
     <p>${expense}</p>
     <p class="expense-log__salary">-${amount}</p>
   </div>`;
-
   expenseLog.insertAdjacentHTML('beforeend', html);
 };
 
@@ -57,7 +72,6 @@ const createBudgetEl = function (budget, category) {
                 <p>You have set a ${budget} budget on ${category}</p>
                 
               </div>`;
-
   budgetLog.insertAdjacentHTML('beforeend', html);
 };
 
@@ -78,6 +92,29 @@ incomeEntryBtn.addEventListener('click', function (e) {
   updateTotalBalance();
 });
 
+budgetEntryBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = +budgetSource.value;
+  const budget = budgetCategory.value.trim();
+
+  if (!budget || isNaN(amount) || amount <= 0) {
+    alert('Enter a valid positive number for budget');
+    return;
+  }
+
+  const existingBudget = budgetArr.find((b) => b.budget === budget);
+  if (existingBudget) {
+    existingBudget.amount = amount;
+    alert(`Budget for ${budget} updated to $${amount}`);
+  } else {
+    budgetArr.push({ budget, amount });
+    createBudgetEl(amount, budget);
+  }
+
+  clearInputs(budgetSource, budgetCategory);
+});
+
 expenseEntryBtn.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -89,26 +126,12 @@ expenseEntryBtn.addEventListener('click', function (e) {
     return;
   }
 
+  const isAllowed = setBudget(expense, amount);
+  if (!isAllowed) return;
+
   expenseArr.push({ expense, amount });
-  console.log(expenseArr);
+
   createExpenseEl(expense, amount);
   clearInputs(expenseSource, expenseAmount);
   updateTotalBalance();
-});
-
-budgetEntryBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-
-  const amount = +budgetSource.value;
-  const budget = budgetCategory.value.trim();
-
-  if (!budget || isNaN(amount) || amount <= 0) {
-    alert('Enter a valid positive number for income');
-    return;
-  }
-
-  budgetArr.push({ budget, amount });
-  console.log(budgetArr);
-  createBudgetEl(amount, budget);
-  clearInputs(budgetSource, budgetCategory);
 });
