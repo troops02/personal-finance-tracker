@@ -33,8 +33,6 @@ const updateTotalBalance = function () {
   calcTotalAmount.textContent = totalBalance;
 };
 
-const setBudget = function () {};
-
 const createIncomeEl = function (income, amount) {
   const html = `
     <div class="tracker__icome-input-log-entry">
@@ -57,8 +55,8 @@ const createExpenseEl = function (expense, amount) {
 
 const createBudgetEl = function (budget, category) {
   const html = `<div class="tracker__budget-entry">
-                <p>${budget}</p>
-                <p class="budget-log__salary">${category}</p>
+                <p>You have set a ${budget} budget on ${category}</p>
+                
               </div>`;
 
   budgetLog.insertAdjacentHTML('beforeend', html);
@@ -103,7 +101,7 @@ budgetEntryBtn.addEventListener('click', function (e) {
   e.preventDefault();
 
   const amount = +budgetSource.value;
-  const budget = budgetCategory.value;
+  const budget = budgetCategory.value.trim();
 
   if (!budget || isNaN(amount) || amount <= 0) {
     alert('Enter a valid positive number for income');
@@ -112,6 +110,6 @@ budgetEntryBtn.addEventListener('click', function (e) {
 
   budgetArr.push({ budget, amount });
   console.log(budgetArr);
-  createBudgetEl(budget, amount);
+  createBudgetEl(amount, budget);
   clearInputs(budgetSource, budgetCategory);
 });
