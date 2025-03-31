@@ -347,7 +347,7 @@ button:active {
 .tracker__budget-entry {
   display: flex;
   align-items: center;
-  max-width: 300px;
+  max-width: 400px;
   height: 40px;
   border-radius: 5px;
   background-color: rgba(163, 41, 33, 0.5);

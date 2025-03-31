@@ -34,6 +34,7 @@ const updateTotalBalance = function () {
 
 const setBudget = (category, expAmount) => {
   const budget = budgetArr.find((b) => b.budget === category);
+  console.log(budget);
 
   if (!budget) {
     alert(`No budgets set for ${category}. Please set a budget first!`);
@@ -118,7 +119,7 @@ budgetEntryBtn.addEventListener('click', function (e) {
 expenseEntryBtn.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const expense = expenseSource.value;
+  const expense = expenseSource.value.trim();
   const amount = +expenseAmount.value.trim();
 
   if (!expense || isNaN(amount) || amount <= 0) {
