@@ -1,9 +1,12 @@
 'use strict';
+import { convertCurrency } from './ports.js';
+
 const incomeSource = document.querySelector('.tracker__income-source');
 const incomeAmount = document.querySelector('.tracker__income-amount');
 const incomeInput = document.querySelector('.tracker__income-input');
 const incomeEntryBtn = document.querySelector('.entry-btn');
 const calcTotalAmount = document.querySelector('.total');
+const currency = document.getElementById('currency');
 
 const expenseSource = document.querySelector('.tracker__expense-source');
 const expenseAmount = document.querySelector('.tracker__expense-value');
@@ -28,13 +31,13 @@ const updateTotalBalance = function () {
   const totalIncome = amountArr.reduce((acc, cur) => acc + cur, 0);
   const totalExpense = expenseArr.reduce((acc, cur) => acc + cur.amount, 0);
   const totalBalance = totalIncome - totalExpense;
+  const currValue = currency.value;
 
-  calcTotalAmount.textContent = totalBalance;
+  calcTotalAmount.textContent = convertCurrency(currValue, totalBalance);
 };
 
-const setBudget = (category, expAmount) => {
+const setBudget = function (category, expAmount) {
   const budget = budgetArr.find((b) => b.budget === category);
-  console.log(budget);
 
   if (!budget) {
     alert(`No budgets set for ${category}. Please set a budget first!`);
@@ -51,28 +54,37 @@ const setBudget = (category, expAmount) => {
 };
 
 const createIncomeEl = function (income, amount) {
+  const currValue = currency.value;
   const html = `
     <div class="tracker__icome-input-log-entry">
         <p class="income-text">${income}</p>
-        <p class="income-salary">+${amount}</p>
+        <p class="income-salary">+${convertCurrency(currValue, amount)}</p>
     </div>`;
+    
   incomeInput.insertAdjacentHTML('beforeend', html);
 };
 
 const createExpenseEl = function (expense, amount) {
+  const currValue = currency.value;
   const html = `
   <div class="tracker__expense-entry">
     <p>${expense}</p>
-    <p class="expense-log__salary">-${amount}</p>
+    <p class="expense-log__salary">-${convertCurrency(currValue, amount)}</p>
   </div>`;
+
   expenseLog.insertAdjacentHTML('beforeend', html);
 };
 
 const createBudgetEl = function (budget, category) {
+  const currValue = currency.value;
   const html = `<div class="tracker__budget-entry">
-                <p>You have set a ${budget} budget on ${category}</p>
+                <p>You have set a ${convertCurrency(
+                  currValue,
+                  budget
+                )} budget on ${category}</p>
                 
               </div>`;
+
   budgetLog.insertAdjacentHTML('beforeend', html);
 };
 
