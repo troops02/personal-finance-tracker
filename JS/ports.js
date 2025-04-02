@@ -8,5 +8,15 @@ export const convertCurrency = function (curr, number) {
     maximumFractionDigits: 0,
   }).format(number);
 
-  return formatCurr.replace('US$','$');
+  return formatCurr.replace('US$', '$');
+};
+
+export const storage = function (arr, set) {
+  let _arr = [];
+  arr.forEach(function (obj) {
+    _arr.push(obj);
+  });
+  _arr = _arr.concat(JSON.parse(localStorage.getItem(set) || '[]'));
+  localStorage.setItem(set, JSON.stringify(_arr));
+  return _arr;
 };

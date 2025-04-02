@@ -1,5 +1,5 @@
 'use strict';
-import { convertCurrency } from './ports.js';
+import { convertCurrency, storage } from './ports.js';
 
 const incomeSource = document.querySelector('.tracker__income-source');
 const incomeAmount = document.querySelector('.tracker__income-amount');
@@ -28,7 +28,7 @@ const clearInputs = (...inputs) =>
   inputs.forEach((input) => (input.value = ''));
 
 const updateTotalBalance = function () {
-  const totalIncome = amountArr.reduce((acc, cur) => acc + cur, 0);
+  const totalIncome = amountArr.reduce((acc, cur) => acc + cur.amount, 0);
   const totalExpense = expenseArr.reduce((acc, cur) => acc + cur.amount, 0);
   const totalBalance = totalIncome - totalExpense;
   const currValue = currency.value;
@@ -60,7 +60,7 @@ const createIncomeEl = function (income, amount) {
         <p class="income-text">${income}</p>
         <p class="income-salary">+${convertCurrency(currValue, amount)}</p>
     </div>`;
-    
+
   incomeInput.insertAdjacentHTML('beforeend', html);
 };
 
@@ -99,10 +99,11 @@ incomeEntryBtn.addEventListener('click', function (e) {
     return;
   }
 
-  amountArr.push(amount);
+  amountArr.push({ income, amount });
   createIncomeEl(income, amount);
   clearInputs(incomeSource, incomeAmount);
   updateTotalBalance();
+  storage(amountArr, 'income');
 });
 
 budgetEntryBtn.addEventListener('click', function (e) {
@@ -126,6 +127,7 @@ budgetEntryBtn.addEventListener('click', function (e) {
   }
 
   clearInputs(budgetSource, budgetCategory);
+  storage(budgetArr, 'budget');
 });
 
 expenseEntryBtn.addEventListener('click', function (e) {
@@ -147,4 +149,5 @@ expenseEntryBtn.addEventListener('click', function (e) {
   createExpenseEl(expense, amount);
   clearInputs(expenseSource, expenseAmount);
   updateTotalBalance();
+  storage(expenseArr, 'expense');
 });
