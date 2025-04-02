@@ -14,7 +14,7 @@ export const convertCurrency = function (curr, number) {
 export const storage = function (arr, set) {
   let _arr = [];
   arr.forEach(function (obj) {
-    _arr.push(obj);
+    _arr.push(obj)
   });
   _arr = _arr.concat(JSON.parse(localStorage.getItem(set) || '[]'));
   localStorage.setItem(set, JSON.stringify(_arr));
