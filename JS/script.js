@@ -19,6 +19,7 @@ const budgetLog = document.querySelector('.tracker__budget-log');
 const budgetEntryBtn = document.querySelector('.tracker__budget-btn');
 
 const transactionBtn = document.querySelector('.transaction-btn');
+const toggleHidden = document.querySelectorAll('.hidden');
 
 const amountArr = [];
 const expenseArr = [];
@@ -150,4 +151,32 @@ expenseEntryBtn.addEventListener('click', function (e) {
   clearInputs(expenseSource, expenseAmount);
   updateTotalBalance();
   storage(expenseArr, 'expense');
+});
+
+const loadStoredData = function () {
+  const storedIncome = JSON.parse(localStorage.getItem('income')) || [];
+  const storedExpense = JSON.parse(localStorage.getItem('expense')) || [];
+  const storedBudget = JSON.parse(localStorage.getItem('budget')) || [];
+
+  storedIncome.forEach(({ income, amount }) => {
+    amountArr.push({ income, amount });
+    createIncomeEl(income, amount);
+  });
+
+  storedExpense.forEach(({ expense, amount }) => {
+    expenseArr.push({ expense, amount });
+    createExpenseEl(expense, amount);
+  });
+
+  storedBudget.forEach(({ budget, amount }) => {
+    budgetArr.push({ budget, amount });
+    createBudgetEl(budget, amount);
+  });
+
+  updateTotalBalance();
+};
+
+window.addEventListener('load', () => {
+  if (!currency.value) currency.value = 'USD';
+  loadStoredData();
 });
