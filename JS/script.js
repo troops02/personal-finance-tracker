@@ -20,6 +20,7 @@ const budgetEntryBtn = document.querySelector('.tracker__budget-btn');
 
 const transactionBtn = document.querySelector('.transaction-btn');
 const toggleHidden = document.querySelectorAll('.hidden');
+const shadowEl = document.querySelector('.shadow');
 
 const amountArr = [];
 const expenseArr = [];
@@ -179,4 +180,18 @@ const loadStoredData = function () {
 window.addEventListener('load', () => {
   if (!currency.value) currency.value = 'USD';
   loadStoredData();
+});
+
+const toggleHiddenEl = function () {
+  toggleHidden.forEach((el) => el.classList.toggle('hidden'));
+};
+
+transactionBtn.addEventListener('click', function () {
+  toggleHiddenEl();
+  shadowEl.classList.remove('hidden');
+});
+
+shadowEl.addEventListener('click', function (e) {
+  toggleHiddenEl();
+  e.currentTarget.classList.add('hidden');
 });
