@@ -18,9 +18,7 @@ const budgetCategory = document.querySelector('.tracker__budget-category');
 const budgetLog = document.querySelector('.tracker__budget-log');
 const budgetEntryBtn = document.querySelector('.tracker__budget-btn');
 
-const transactionBtn = document.querySelector('.transaction-btn');
-const toggleHidden = document.querySelectorAll('.hidden');
-const shadowEl = document.querySelector('.shadow');
+const storageBtn = document.querySelector('.storage-btn');
 
 const amountArr = [];
 const expenseArr = [];
@@ -139,7 +137,7 @@ expenseEntryBtn.addEventListener('click', function (e) {
   const amount = +expenseAmount.value.trim();
 
   if (!expense || isNaN(amount) || amount <= 0) {
-    alert('Enter a valid positive number for income');
+    alert('Enter a valid positive number for expense');
     return;
   }
 
@@ -182,16 +180,14 @@ window.addEventListener('load', () => {
   loadStoredData();
 });
 
-const toggleHiddenEl = function () {
-  toggleHidden.forEach((el) => el.classList.toggle('hidden'));
-};
-
-transactionBtn.addEventListener('click', function () {
-  toggleHiddenEl();
-  shadowEl.classList.remove('hidden');
-});
-
-shadowEl.addEventListener('click', function (e) {
-  toggleHiddenEl();
-  e.currentTarget.classList.add('hidden');
+storageBtn.addEventListener('click', function () {
+  localStorage.clear();
+  amountArr.length = 0;
+  expenseArr.length = 0;
+  budgetArr.length = 0;
+  incomeInput.innerHTML = '';
+  expenseLog.innerHTML = '';
+  budgetLog.innerHTML = '';
+  calcTotalAmount.textContent = convertCurrency(currency.value, 0);
+  alert('All data cleared!');
 });

@@ -13,7 +13,6 @@ export const convertCurrency = function (curr, number) {
 
     return formatCurr.replace('US$', '$');
   } catch (error) {
-    
     console.error(`Invalid currency code: ${curr}. Defaulting to USD.`, error);
     return number;
   }
