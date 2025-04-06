@@ -180,7 +180,7 @@ window.addEventListener('load', () => {
   loadStoredData();
 });
 
-storageBtn.addEventListener('click', function () {
+const clearStorage = function () {
   localStorage.clear();
   amountArr.length = 0;
   expenseArr.length = 0;
@@ -190,4 +190,6 @@ storageBtn.addEventListener('click', function () {
   budgetLog.innerHTML = '';
   calcTotalAmount.textContent = convertCurrency(currency.value, 0);
   alert('All data cleared!');
-});
+};
+
+storageBtn.addEventListener('click', clearStorage);
