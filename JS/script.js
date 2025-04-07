@@ -19,32 +19,17 @@ const budgetLog = document.querySelector('.tracker__budget-log');
 const budgetEntryBtn = document.querySelector('.tracker__budget-btn');
 
 const storageBtn = document.querySelector('.storage-btn');
-const ctx = document.getElementById('myChart');
 
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [
-      {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  },
-});
+const savingInput = document.querySelector('.saving-input');
+const amountInput = document.querySelector('.saving-amount');
+const savingBtn = document.querySelector('.saving-btn');
+
+const ctx = document.getElementById('myChart');
 
 const amountArr = [];
 const expenseArr = [];
 const budgetArr = [];
+let savingsData = [];
 
 const clearInputs = (...inputs) =>
   inputs.forEach((input) => (input.value = ''));
@@ -178,6 +163,7 @@ const loadStoredData = function () {
   const storedIncome = JSON.parse(localStorage.getItem('income')) || [];
   const storedExpense = JSON.parse(localStorage.getItem('expense')) || [];
   const storedBudget = JSON.parse(localStorage.getItem('budget')) || [];
+  const storedSaving = JSON.parse(localStorage.getItem('savings')) || [];
 
   storedIncome.forEach(({ income, amount }) => {
     amountArr.push({ income, amount });
@@ -192,6 +178,11 @@ const loadStoredData = function () {
   storedBudget.forEach(({ budget, amount }) => {
     budgetArr.push({ budget, amount });
     createBudgetEl(budget, amount);
+  });
+
+  storedSaving.forEach(({ label, amount }) => {
+    savingsData.push({ label, amount });
+    updatedChart();
   });
 
   updateTotalBalance();
@@ -210,8 +201,55 @@ const clearStorage = function () {
   incomeInput.innerHTML = '';
   expenseLog.innerHTML = '';
   budgetLog.innerHTML = '';
+  ctx.innerHTML = '';
   calcTotalAmount.textContent = convertCurrency(currency.value, 0);
   alert('All data cleared!');
 };
 
 storageBtn.addEventListener('click', clearStorage);
+
+const addSaving = function () {
+  const label = savingInput.value.trim();
+  const amount = +amountInput.value;
+
+  if (!label || isNaN(amount)) {
+    alert('Please enter valid saving name and amount');
+    return;
+  }
+
+  savingsData.push({ label, amount });
+  updatedChart();
+  clearInputs(savingInput, amountInput);
+  storage(savingsData, 'savings');
+};
+
+const savingsChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: [],
+    datasets: [
+      {
+        label: 'My Savings',
+        data: [],
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+    ],
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+});
+
+const updatedChart = function () {
+  savingsChart.data.labels = savingsData.map((s) => s.label);
+  savingsChart.data.datasets[0].data = savingsData.map((s) => s.amount);
+  savingsChart.update();
+};
+
+savingBtn.addEventListener('click', addSaving);

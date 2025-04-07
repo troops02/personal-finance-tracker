@@ -415,6 +415,15 @@ button:active {
   font-size: 1.2em;
 }
 
+.saving-btn {
+  cursor: pointer;
+  padding: 5px 5px;
+  background-color: rgba(107, 60, 15, 0.5);
+  border: 1px solid rgba(107, 60, 15);
+  border-radius: 1000px;
+  transition: all 0.5s;
+}
+
 /*----------------------transaction--------------------- */
 .storage-btn {
   position: relative;
