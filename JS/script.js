@@ -29,7 +29,7 @@ const ctx = document.getElementById('myChart');
 const amountArr = [];
 const expenseArr = [];
 const budgetArr = [];
-let savingsData = [];
+const savingsData = [];
 
 const clearInputs = (...inputs) =>
   inputs.forEach((input) => (input.value = ''));
